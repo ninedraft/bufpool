@@ -43,7 +43,7 @@ func (readers *Readers) Put(re *bufio.Reader) {
 	readers.pool.Put(re)
 }
 
-// Copy streams bytes from src to dst using buffer from the pool.
+// Copy streams bytes (as io.Copy does) from src to dst using buffer from the pool.
 // It can call src.WriteTo or dst.ReadFrom if provided.
 func (readers *Readers) Copy(dst io.Writer, src io.Reader) (int64, error) {
 	// don't allocate a new buffer if we can copy src to dst directly
